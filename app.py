@@ -4,8 +4,10 @@ import matplotlib.pyplot as plt
 
 st.title("Indian Stock Analysis Dashboard")
 
-start_date = st.date_input("Start Date", value=None)
-end_date = st.date_input("End Date", value=None)
+from datetime import date
+
+start_date = st.date_input("Start Date", value=date(2024, 1, 1))
+end_date = st.date_input("End Date", value=date.today())
 
 stocks = [
     'ICICIBANK.NS',
@@ -42,6 +44,9 @@ if analyze:
     ax.plot(data['MA200'], label='200-Day MA')
 
     ax.legend()
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Price (INR)")
+    ax.set_title(selected_stock)
     st.pyplot(fig)
 
     # THIS must come before mean/std
